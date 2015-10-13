@@ -1,0 +1,46 @@
+<div class="modal filters" ng-controller=FilterCtrl>
+    <ion-header-bar class=bar-dark>
+        <div class="buttons button-secondary">
+            <button ng-show=hasFilterSelection(filters) class="button button-clear button-light" ng-click=clearFilters(filters)>Clear</button>
+        </div>
+        <h1 class=title>Filter Products</h1>
+        <div class="buttons button-primary">
+            <button class="button button-clear button-light" ng-click=applyFilters(filters)>{{ hasFilterSelection(filters) ? 'Apply' : 'Close' }}</button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content delegate-handle=filters scroll=false>
+        <!-- product filter search bar -->
+        <mlz-search placeholder="type to search for an item..." model=filters.search ng-enter=applyFilters(filters)></mlz-search>
+
+        <!-- product type picker -->
+        <div ng-show="filters.type.length > 0">
+            <div class="item item-divider">Type</div>
+            <ion-spinner delegate-handle=types class=types items=filters.type item-width=78 item-height=70 ng-class="{'filter-active': hasSelection(filters.type)}">
+                <div class="button button-clear type icon-{{type.key}}-{{filters.gender}}" ng-repeat="type in filters.type" ng-class="{'selected': type.selected}" ng-click="toggleFilterSelection(filters, 'type', type)"><span ng-bind=type.key></span><span class="tick ion-checkmark" ng-show=type.selected></span></div>
+            </ion-spinner>
+        </div>
+
+        <!-- product colour picker -->
+        <div ng-show="filters.colour.length > 0">
+            <div class="item item-divider">Colour</div>
+            <ion-spinner delegate-handle=colours class=colours items=filters.colour item-width=70 item-height=70 ng-class="{'filter-active': hasSelection(filters.colour)}">
+                <div class="button button-clear colour {{colour.key}}" ng-repeat="colour in filters.colour" ng-class="{'selected': colour.selected}" style="background-color: {{colour.hex}}" ng-click="toggleFilterSelection(filters, 'colour', colour)"><span ng-bind=colour.key></span><span class="tick ion-checkmark" ng-show=colour.selected></span></div>
+            </ion-spinner>
+        </div>
+
+        <!-- product price range picker $filter('currency')(this.price[key], '£'); -->
+        <div class="item item-divider price-range">Price Range</div>
+        <form class="row price-range">
+            <label class="col col-40 price-label">{{view.currency}} From<input class=price-input ng-model=filters.min_price type=number step=1></label>
+            <div class="col col-20 price-divider">-</div>
+            <label class="col col-40 price-label">{{view.currency}} To<input class=price-input ng-model=filters.max_price type=number step=1></label>
+        </form>
+
+    </ion-content>
+
+    <ion-footer-bar class=bar-light ng-click=applyFilters(filters)>
+      <div ng-show=products.loading class=title>Searching ...</div>
+      <div ng-hide=products.loading class=title>{{products.count}} Products found</div>
+    </ion-footer-bar>
+</div>

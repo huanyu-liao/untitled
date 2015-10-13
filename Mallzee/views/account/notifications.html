@@ -1,0 +1,28 @@
+<ion-view view-title=Notifications>
+  <ion-content>
+    <ion-list>
+      <div class="item item-divider">Push Notifications</div>
+      <div class="item item-toggle allow-click">
+          Price Drop
+           <label class="toggle toggle-balanced" ng-click="help('push-pricedrop')">
+             <input type=checkbox ng-model=user.settings.notifications.push.price_drop ng-change=updateProfile(user)>
+             <div class=track>
+               <div class=handle></div>
+             </div>
+           </label>
+      </div>
+
+      <div class="item item-divider">Email Notifications</div>
+      <div class="item item-toggle allow-click" ng-click="help('email-pricedrop')">
+           Price Drop
+           <label class="toggle toggle-balanced" ion-stop-event=click>
+             <input type=checkbox ng-model=user.settings.notifications.email.price_drop ng-change=updateProfile(user)>
+             <div class=track>
+               <div class=handle></div>
+             </div>
+           </label>
+      </div>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

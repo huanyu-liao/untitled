@@ -1,0 +1,15 @@
+<ion-view view-title=Mallzee>
+    <ion-content class="has-header bg-image mallzee">
+
+        <!-- Quick search for products -->
+        <mlz-search placeholder="What are you shopping for?" model=query.search perform=searchProducts(query)></mlz-search>
+
+        <div class=padding>
+            <!-- New in directive to display a nice button with the latest products -->
+            <mlz-new-in products=products.records columns=iPad ui-sref=tab.products></mlz-new-in>
+
+            <!-- Loaded from Runway S3 account http://runway.mallzee.com/index.html -->
+            <ng-include src=inspirationIndex></ng-include>
+        </div>
+    </ion-content>
+</ion-view>

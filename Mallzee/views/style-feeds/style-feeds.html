@@ -1,0 +1,57 @@
+<ion-view view-title="Style Feeds">
+
+    <ion-nav-buttons side=secondary>
+        <button class="button button-clear button-light" ng-click=toggleEditingStyleFeeds() ng-show="stylefeeds.records.length > 0">
+            {{view.editTitle}}
+        </button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side=primary>
+        <button class="button button-clear button-light" ng-click=addStyleFeed()>
+            <i class="icon icon-new"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class=bg-image>
+        <mlz-help on-close=closeHelp() title={{view.helpTitle}} message={{view.helpMessage}} hide=view.settings.hide_help_sf ng-hide=view.settings.hide_help_sf></mlz-help>
+
+        <ion-list show-delete=view.editingStyleFeeds>
+
+            <!-- The users selected stylefeeds -->
+            <ion-item class=item-thumbnail-left ng-repeat="stylefeed in (filteredRecords = (stylefeeds.records | orderBy:'name' | filter:view.search))" ng-click=selectStyleFeed(stylefeed) style=pointer-events:initial>
+
+                <!-- Item content -->
+                <img ng-if=stylefeed.image mlz-camera-image="" ng-src={{stylefeed.image}} class=round>
+                <img ng-if=!stylefeed.image class="icon icon-polaroids round empty">
+                <h2>{{stylefeed.name}}</h2>
+                <p><span ng-show=stylefeed.new_count>{{stylefeed.new_count}} new arrivals</span>&nbsp;</p>
+                <div class=item-timestamp ng-if=stylefeed.counted_at>Updated <span am-time-ago=stylefeed.counted_at></span></div>
+
+                <!-- Swipe buttons -->
+                <ion-option-button class=button-calm ng-click=editStyleFeed(stylefeed)>Edit</ion-option-button>
+                <ion-option-button class=button-assertive ng-click=deleteStyleFeed(stylefeed)>Delete</ion-option-button>
+
+                <!-- Edit buttons -->
+                <ion-delete-button class=ion-minus-circled ng-click=deleteStyleFeed(stylefeed)></ion-delete-button>
+
+            </ion-item>
+
+            <div class=padding>
+                <button class="item button button-block button-balanced button-outline" ng-click=addStyleFeed()>Create a Style Feed</button>
+            </div>
+
+        </ion-list>
+
+        <!-- Empty search card -->
+        <div class="empty padding center" ng-show="search.name.length > 0 && filteredRecords.length === 0">
+            <h1>We could not find the style feed you are looking for</h1>
+        </div>
+        <!-- Empty screen card -->
+        <div class="empty padding center" ng-hide="stylefeeds.records.length > 0">
+            <h1>Curate your style</h1>
+            <img class=perc60 src=res/images/empty-stylefeeds.png>
+            <p>Create bespoke style feeds to take your wardrobe from work to play and beyond</p>
+            <button class="item button button-block button-clear" ng-click=addStyleFeed()>Tap <i class="icon icon-new"></i> to begin</button>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,23 @@
+<div class=wrapper ng-click="modal.showProduct(product, context)">
+    <div class=image-center>
+        <mlz-img class=full-image src={{product.merchants[0].stock[0].images[0]}}></mlz-img>
+    </div>
+
+    <img class=brand-logo ng-src={{product.brand.logo}} ion-stop-event=click ng-click=viewBrand(product.brand)>
+
+    <div class=updated am-time-ago=product.updated_at></div>
+
+    <div class=price>
+        <div class="type icon-{{product.type}}-{{product.gender}} {{product.colour}}"></div>
+        <mlz-colours ng-if="product.colours.length > 1" radius=14 inner-radius=8 colours=product.colours></mlz-colours>
+        <div class=sale ng-show=product.isOnSale ion-stop-event=click ng-click="buy(product, context, view.merchantIndex, view.stockIndex)">was {{product.originalCost}}</div>
+        <button class="button button-balanced button-rounded" ion-stop-event=click ng-click="buy(product, context, view.merchantIndex, view.stockIndex)">Buy {{product.cost}}</button>
+    </div>
+
+    <div class="button-bar row padding">
+        <div class=col><button class="button button-assertive button-block button-outline button-bold button-circle pull-right" ion-stop-event=click ng-click="hide(product, context)"><i class="icon icon-thumb-down"></i></button></div>
+        <div class=col><button class="button button-balanced button-block button-outline button-bold button-circle pull-left" ion-stop-event=click ng-click="save(product, context)"><i class="icon icon-thumb-up"></i></button></div>
+    </div>
+
+    <img ng-if=product.merchants[0].stock[0].pixel ng-src={{product.merchants[0].stock[0].pixel}}>
+</div>

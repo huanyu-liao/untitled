@@ -1,0 +1,36 @@
+<ion-view view-title={{brand.name}}>
+    <ion-content delegate-handle=brand class=padding>
+
+
+        <!-- Featured brands -->
+        <div class=card>
+          <div class=item>New in from {{brand.name}}</div>
+          <ion-pane class="item item-full-width lookbook">
+            <ion-slide-box delegate-handle=brand-products on-slide-changed=updateSlideIndex($index)>
+              <ion-slide ng-repeat="product in brand.products | limitTo:5" ng-click="ProductModalService.show(product, context)">
+                <mlz-img src={{product.merchants[0].stock[0].images[0]}}></mlz-img>
+              </ion-slide>
+            </ion-slide-box>
+            <div class=pager><span ng-repeat="product in brand.products | limitTo:5" ng-class="{'active': $index === view.currentSlideIndex}"></span></div>
+          </ion-pane>
+        </div>
+
+        <button class="button button-block button-outline button-balanced" ng-click=shopBrand(brand) ng-if=view.shoppingAvailable>Shop the brand</button>
+
+        <div class=card>
+          <div class=item>Description</div>
+            <!--div class="item item-icon-left"><i class="icon icon-price primary"></i> <span ng-repeat="bags in _.range(0, brand.info.price_min)">&pound;</span> - <i ng-repeat="bags in _.range(0, brand.info.price_max)">&pound;</i></div-->
+
+            <!--div class="item item-text-wrap item-icon-left"><i class="icon icon-delivery primary"></i> {{brand.info.delivery}}</div>
+
+            <div class="item item-text-wrap item-icon-left"><i class="icon icon-returns primary"></i> {{brand.info.returns}}</div-->
+
+            <div class="item item-text-wrap" ng-bind=brand.info.description></div>
+        </div>
+
+        <button class="button button-block button-outline" ng-class="{'button-assertive':brand.status === 'favourite', 'button-calm':brand.status !== 'favourite'}" ng-click=toggleFavouriteBrand(brand) ng-bind="brand.status !== 'favourite' ? 'Favourite brand' : 'Unfavourite brand' "></button>
+
+        <button class="button button-block button-outline" ng-class="{'button-assertive':brand.status !== 'hidden', 'button-calm':brand.status === 'hidden'}" ng-click=toggleHiddenBrand(brand) ng-bind="brand.status === 'hidden' ? 'Restore Brand' : 'Hide Brand'"></button>
+
+    </ion-content>
+</ion-view>

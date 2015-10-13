@@ -1,0 +1,17 @@
+<div class="bar bar-header bar-clear"></div>
+
+<div class=row>
+  <button class="round button icon-big icon" ng-class="{'icon-camera': !stylefeed.image}" ng-click=choosePhoto()><img ng-if=stylefeed.image mlz-camera-image="" ng-src={{stylefeed.image}}></button>
+</div>
+
+<div class="list padding">
+  <label class="item item-input">
+    <input tabindex=-1 ng-model=stylefeed.name autofocus placeholder="Give your style feed a name" ng-enter=walkthrough.closeKeyboard()>
+  </label>
+
+  <h5 class=center>Select gender</h5>
+  <div class="button-bar padding-top padding-bottom">
+    <button class="button button-balanced" ng-class="{'button-outline': stylefeed.filter.gender !== 'male'}" ng-click="setGender('male')">Male</button>
+    <button class="button button-balanced" ng-class="{'button-outline': stylefeed.filter.gender !== 'female'}" ng-click="setGender('female')">Female</button>
+  </div>
+</div>

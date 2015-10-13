@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" ng-attr-width="{{ (radius * 2) }}" ng-attr-height="{{ (radius * 2) }}">
+  <g ng-if="slices.length > 1" ng-attr-transform="translate({{radius}}, {{radius}}), scale({{radius}})">
+    <path ng-repeat="slice in slices" ng-attr-d="M0,0L{{slice.start.x}},{{slice.start.y}}A1,1,1,0,1,{{slice.end.x}},{{slice.end.y}}Z" ng-attr-fill="{{slice.colour}}" />
+  </g>
+
+  <circle ng-attr-cx="{{radius}}" ng-if="slices.length === 1" ng-attr-cy="{{radius}}" ng-attr-r="{{ radius }}" ng-attr-fill="{{slices[0].colour}}" />
+  <circle ng-attr-cx="{{radius}}" ng-attr-cy="{{radius}}" ng-attr-r="{{ innerRadius }}" fill="white" />
+</svg>

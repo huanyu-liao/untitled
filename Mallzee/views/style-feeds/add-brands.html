@@ -1,0 +1,14 @@
+<div class="bar bar-header bar-clear"></div>
+<ion-content class="progress footer filters">
+
+	<!-- Brands search bar -->
+    <mlz-search placeholder="What brand are you looking for?" model=search.key></mlz-search>
+
+	<ion-list ng-class="{'filter-active': hasSelected(filters.filter.brand)}">
+		<!-- The users selected brands -->
+	    <ion-item class="item item-brand-logo brand" ng-repeat="brand in filters.filter.brand | orderBy:'name' | orderBy:['order', 'key'] | filter:search" ng-click="toggleFilter(filters.filter, 'brand', brand)" ng-class="{'selected': brand.selected}">
+	        <img ng-src={{brand.logo}}>
+	        <span class="tick ion-checkmark" ng-show=brand.selected></span>
+	    </ion-item>
+    </ion-list>
+</ion-content>

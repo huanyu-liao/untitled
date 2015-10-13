@@ -1,0 +1,47 @@
+<ion-view view-title="Mobile #">
+    <ion-content>
+        <div class="row padding">
+        	Friends who have your phone number in their address book will be able to find you on Mallzee
+        </div>
+
+        <div class=list>
+        	<li class="item item-toggle">
+                 Allow friends to find me
+                 <label class="toggle toggle-balanced">
+                   <input type=checkbox>
+                   <div class=track>
+                     <div class=handle></div>
+                   </div>
+                 </label>
+            </li>
+
+	        <label class="item item-input item-select">
+	            <div class=input-label>
+	                Country
+	            </div>
+	            <select class=item-note ng-model=user.country>
+	                <option>UK
+	                <option>US
+	            </select>
+	        </label>
+
+	        <label class="item item-input">
+	        	<input type=number ng-model=user.mobile.number placeholder="Mobile Number">
+	        </label>
+
+	        <label ng-if=!user.mobile.needs_verified class="item item-input">
+	        	<input type=number ng-model=user.mobile.verification_code placeholder="Verification code">
+	        </label>
+
+	        <button class="button button-full button-balanced" ng-click=verifyMobileNumber()>Verify</button>
+        </div>
+
+
+        <div class="row padding">
+        	We will never display your phone number to other Mallzee users
+        </div>
+ 		<div class="row padding">
+ 			Read our  <a href="#/"> Privacy Policy </a>  to learn more
+ 		</div>
+    </ion-content>
+</ion-view>

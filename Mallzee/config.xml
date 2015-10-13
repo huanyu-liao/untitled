@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.mallzee.mallzee" version="2.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Mallzee</name>
+    <description>
+        The personalised fashion app with a social twist
+    </description>
+    <author email="hq@mallzee.com" href="http://mallzee.com">
+        Mallzee
+    </author>
+
+    <content src="index.html" />
+
+    <!-- Build for iOS and Android for just now -->
+    <gap:platform name="ios" />
+    <gap:platform name="android" />
+
+    <!-- Plugins -->
+    <gap:plugin name="org.apache.cordova.console" version="0.2.7" />
+    <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.contacts" version="0.2.9" />
+    <gap:plugin name="org.apache.cordova.camera" version="0.3.2" />
+    <gap:plugin name="org.apache.cordova.geolocation" version="0.3.7" />
+    <gap:plugin name="org.apache.cordova.globalization" version="0.2.6" />
+    <gap:plugin name="org.apache.cordova.network-information" version="0.2.7" />
+    <gap:plugin name="org.apache.cordova.dialogs" version="0.2.6" />
+    <gap:plugin name="org.apache.cordova.statusbar" version="0.1.4" />
+    <gap:plugin name="org.apache.cordova.splashscreen" version="0.2.7" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" version="0.3.3" />
+    <gap:plugin name="com.mallzee.plugin.networkactivity" version="1.0.0" />
+    <gap:plugin name="com.phonegap.plugins.pushplugin" />
+    <gap:plugin name="com.ionic.keyboard" />
+    <gap:plugin name="nl.x-services.plugins.socialsharing" version="4.3.0" />
+    <gap:plugin name="nl.x-services.plugins.launchmyapp" version="3.2.0">
+        <param name="URL_SCHEME" value="mlz" />
+    </gap:plugin>
+
+    <!-- Global Preferences -->
+    <preference name="phonegap-version" value="3.5.0" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="prerendered-icon" value="true" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="CameraUsesGeolocation" value="false" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="10000" />
+
+    <!-- iOS Preferences -->
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+
+    <feature name="SocialSharing">
+        <param name="ios-package" value="SocialSharing" />
+    </feature>
+
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" onload="true" />
+    </feature>
+
+    <feature name="NetworkActivity">
+        <param name="ios-package" value="NetworkActivity" onload="true" />
+    </feature>
+
+    <feature name="Keyboard">
+        <param name="ios-package" value="IonicKeyboard" onload="true" />
+    </feature>
+
+    <feature name="Localytics">
+        <param name="ios-package" name="Localytics" onload="true" />
+    </feature>
+
+    <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
+        <false/>
+    </gap:config-file>
+
+    <gap:config-file platform="ios" parent="UIStatusBarStyle">
+        <string>UIStatusBarStyleLightContent</string>
+    </gap:config-file>
+
+    <icon src="icon.png" gap:role="default" />
+
+    <!-- iPhone / iPod Touch -->
+    <icon src="app/res/icon/ios/icon-57.png" gap:platform="ios" width="57" height="57" />
+    <icon src="app/res/icon/ios/icon-114.png" gap:platform="ios" width="114" height="114" />
+
+    <!-- iPad -->
+    <icon src="app/res/icon/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="app/res/icon/ios/icon-144.png" gap:platform="ios" width="144" height="144" />
+
+    <!-- iPhone Spotlight and Settings Icon -->
+    <icon src="app/res/icon/ios/icon-29.png" gap:platform="ios" width="29" height="29" />
+    <icon src="app/res/icon/ios/icon-58.png" gap:platform="ios" width="58" height="58" />
+
+    <!-- iPad Spotlight and Settings Icon -->
+    <icon src="app/res/icon/ios/icon-50.png" gap:platform="ios" width="50" height="50" />
+    <icon src="app/res/icon/ios/icon-100.png" gap:platform="ios" width="100" height="100" />
+
+    <!-- iOS 7+ -->
+    <!-- iPhone / iPod Touch  -->
+    <icon src="app/res/icon/ios/icon-58.png" gap:platform="ios" width="60" height="60" />
+    <icon src="app/res/icon/ios/icon-120.png" gap:platform="ios" width="120" height="120" />
+
+    <!-- iPad -->
+    <icon src="app/res/icon/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
+    <icon src="app/res/icon/ios/icon-152.png" gap:platform="ios" width="152" height="152" />
+
+    <!-- Settings Icon -->
+    <icon src="app/res/icon/ios/icon-29.png" gap:platform="ios" width="29" height="29" />
+    <icon src="app/res/icon/ios/icon-58.png" gap:platform="ios" width="58" height="58" />
+
+    <!-- Spotlight Icon -->
+    <icon src="app/res/icon/ios/icon-40.png" gap:platform="ios" width="40" height="40" />
+    <icon src="app/res/icon/ios/icon-80.png" gap:platform="ios" width="80" height="80" />
+
+    <gap:splash gap:platform="ios" height="480" src="app/res/screen/ios/screen-iphone-portrait.png" width="320" />
+    <gap:splash gap:platform="ios" height="960" src="app/res/screen/ios/screen-iphone-portrait-2x.png" width="640" />
+    <gap:splash gap:platform="ios" height="1136" src="app/res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" />
+    <gap:splash gap:platform="ios" height="1024" src="app/res/screen/ios/screen-ipad-portrait.png" width="768" />
+    <gap:splash gap:platform="ios" height="768" src="app/res/screen/ios/screen-ipad-landscape.png" width="1024" />
+
+    <!-- Android Preferences ->
+    <feature name="SocialSharing">
+        <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+    </feature>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /-->
+
+    <access origin="*" />
+</widget>

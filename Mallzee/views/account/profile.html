@@ -1,0 +1,60 @@
+<ion-view view-title="My Profile">
+    <ion-content class=profile>
+        <div class=list>
+            <!-- Details -->
+            <div class="item item-divider"></div>
+
+            <label class="item item-input">
+                <span class=input-label>First Name</span>
+                <input ng-model=user.name.first>
+            </label>
+
+            <label class="item item-input">
+                <span class=input-label>Last Name</span>
+                <input ng-model=user.name.last>
+            </label>
+
+            <a class="item item-icon-right" href=#/account/profile/email>
+                Email
+                <span class=item-note>{{user.email}}</span>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+
+            <label class="item item-input item-select">
+                <div class=input-label>
+                    Gender
+                </div>
+                <select class=item-note ng-model=user.gender>
+                    <option value=male ng-selected="user.gender === 'male'">Male
+                    <option value=female ng-selected="user.gender === 'female'">Female
+                </select>
+            </label>
+
+            <label class="item item-input">
+                <span class=input-label>Birthday</span>
+                <input type=date ng-model=user.birthday>
+            </label>
+
+            <label class="item item-input item-select">
+                <div class=input-label>
+                    Region
+                </div>
+                <select class=item-note ng-model=user.regions[0]>
+                    <option value=GBR ng-selected="user.regions[0] === 'GBR'">United Kingdom
+                    <option value=USA ng-selected="user.regions[0] === 'USA'">USA
+                </select>
+            </label>
+
+            <!--a class="item item-icon-right" href="#/account/profile/mobile">
+                Mobile Number
+                <span class="item-note">{{user.phone.mobile}}</span>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a-->
+
+        </div>
+
+        <div class=padding>
+            <button class="button button-block button-balanced" ng-click=updateProfile(user)>Save</button>
+        </div>
+    </ion-content>
+</ion-view>

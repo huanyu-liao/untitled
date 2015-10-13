@@ -1,0 +1,14 @@
+<div class=new-in>
+	<div class="row padding">
+    	<div class="col col-20" ng-repeat="product in products | limitTo:5 track by product._id"><mlz-img src={{product.images[0]}}></mlz-img></div>
+    </div>
+    <div ng-if=!columns class="row padding">
+    	<div class="col title"><h1>SHOP NOW <span class="icon icon-back"></span></h1></div>
+	</div>
+	<div ng-if=columns class="row padding">
+    	<div class="col col-20"><mlz-img src={{products[5].images[0]}}></mlz-img></div>
+    	<div class="col col-20"><mlz-img src={{products[6].images[0]}}></mlz-img></div>
+    	<div class="col col-20"><mlz-img src={{products[7].images[0]}}></mlz-img></div>
+    	<div class="col col-40 title"><h1>SHOP NOW <span class="icon icon-back"></span></h1></div>
+	</div>
+</div>

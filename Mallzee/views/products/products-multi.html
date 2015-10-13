@@ -1,0 +1,5 @@
+<div class=product-multi collection-repeat="product in products.records track by product._id" collection-item-width=view.productWidth collection-item-height=view.productHeight ng-click="modal.showProduct(product, context)">
+
+    <mlz-img class=multi-image src={{product.merchants[0].stock[0].images[0]}} id={{$id}}></mlz-img>
+    <div class=info>{{product.brand.name}}<span class=price ng-class="{'on-sale':product.isOnSale}">{{product.cost}}</span><span class=sale ng-show=product.isOnSale>{{product.originalCost}}</span></div>
+</div>

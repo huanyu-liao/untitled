@@ -1,0 +1,76 @@
+<ion-content delegate-handle=product class=product-information>
+  <div class=card>
+    <div ng-if="stockItems.length > 1 && !view.savedProduct" class="item row info">
+        <div class="col col-30 brand-logo-details" ng-click=viewBrand(product.brand)><img class=brand-logo ng-src={{product.brand.logo}}></div>
+        <div class="col col-20 center"><mlz-colours radius=14 inner-radius=8 colours=product.colours></mlz-colours></div>
+        <div class="col col-20 type-logo"><i class="icon icon-{{product.type}}-{{product.gender}} {{product.merchants[0].stock[0].colour.display}}"></i></div>
+        <div class="col col-30 price" ng-class="{'on-sale': product.isOnSale}"><div class=sale ng-if=product.isOnSale ion-stop-event=click ng-click="buy(product, context, view.merchantIndex, view.stockIndex)">was {{product.originalCost}}</div>
+        <button class="button button-balanced button-rounded" ion-stop-event=click ng-click="buy(product, context, view.merchantIndex, view.stockIndex)">Buy {{product.cost}}</button></div>
+    </div>
+    <div ng-if="stockItems.length === 1 || view.savedProduct" class="item row info">
+        <div class="col col-40 brand-logo-details" ng-click=viewBrand(product.brand)><img class=brand-logo ng-src={{product.brand.logo}}></div>
+        <div class="col col-20 type-logo"><i class="icon icon-{{product.type}}-{{product.gender}} {{product.merchants[0].stock[0].colour.display}}"></i></div>
+        <div class="col col-40 price"><div class=sale ng-if=product.isOnSale ion-stop-event=click ng-click="buy(product, context, view.merchantIndex, view.stockIndex)">was {{product.originalCost}}</div>
+        <button class="button button-balanced button-rounded" ion-stop-event=click ng-click="buy(product, context, view.merchantIndex, view.stockIndex)">Buy {{product.cost}}</button></div>
+    </div>
+
+    <div class="item item-text-wrap">
+      <h2 class=center ng-bind=product.name></h2>
+    </div>
+
+    <!-- Featured image -->
+    <div class="item item-full-width">
+      <ion-pane class=lookbook ng-repeat="stockItem in stockItems" ng-if="$index === view.stockIndex">
+        <ion-slide-box delegate-handle=product-images class="item lookbook" on-slide-changed=updateSlideIndex($index)>
+          <ion-slide ng-repeat="image in stockItem.images" ng-click="viewImages(product.images, $index)">
+            <mlz-img class={{product.type}} src={{image}}></mlz-img>
+          </ion-slide>
+        </ion-slide-box>
+        <div class=pager><span ng-repeat="image in stockItems[view.stockIndex].images" ng-class="{'active': $index === view.currentSlideIndex}"></span></div>
+      </ion-pane>
+    </div>
+  </div>
+  <div class=card ng-if="stockItems.length > 1">
+    <div class="item item-divider">Colours</div>
+
+    <div class="item row splitter colours">
+      <div class="col colour" ng-repeat="stockItem in stockItems" ng-click=updateStockIndex($index)><span ng-style="{'background-color':stockItem.colour.hex}"></span></div>
+    </div>
+  </div>
+  <div class=card ng-if="stockItems[view.stockIndex].sizes[0].size | sizeAvailible">
+    <div class="item item-divider">Sizes</div>
+
+    <div class="item row splitter center">
+      <div class=col ng-repeat="size in stockItems[view.stockIndex].sizes">
+        <div class=size ng-class="{'disabled': size.quantity === 0}">
+          {{size.size | uppercase}}
+          <div class=low-stock ng-if="size.quantity > 0 && size.quantity < view.lowStockThreshold">Low stock</div>
+          <div class=out-of-stock ng-if="size.quantity === 0 ">Out of stock</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=padding>
+    <button class="button button-balanced button-block button-bold" ng-click="buy(product, context, view.merchantIndex, view.stockIndex)">Buy on store</button>
+  </div>
+
+  <div class=card>
+    <div class="item item-divider">Retailer Information</div>
+
+    <div class="item item-text-wrap item-icon-left"><i class="icon icon-merchant primary"></i> {{product.merchants[0].name}}</div>
+    <div class="item item-text-wrap item-icon-left"><i class="icon icon-delivery primary"></i> {{product.merchants[0].info.delivery}}</div>
+
+    <div class="item item-text-wrap item-icon-left"><i class="icon icon-returns primary"></i> {{product.merchants[0].info.returns}}</div>
+
+    <div class="item item-divider">Product Information</div>
+    <div class="item item-text-wrap"><p ng-bind-html=product.description></p></div>
+  </div>
+
+  <div class=padding ng-if="view.savedProduct === true">
+    <button class="button button-block button-outline button-assertive" ng-click=deleteUserProduct(product)>
+        Delete
+    </button>
+  </div>
+
+</ion-content>

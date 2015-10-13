@@ -1,0 +1,44 @@
+<ion-view view-title=Brands>
+  <ion-content delegate-handle=brands class=bg-image>
+
+    <!-- Brands search bar -->
+    <mlz-search placeholder="What brand are you looking for?" model=view.search.name on-focus=simplifyView(true) on-blur=simplifyView(false)></mlz-search>
+
+    <!-- Featured brands -->
+    <div class="padding-left padding-right padding-top on-keyboard-hide">
+      <ion-pane class=featured>
+        <ion-slide-box delegate-handle=featured on-slide-changed=updateSlideIndex($index) auto-play=3000>
+          <ion-slide ng-repeat="brand in brands.records | filter:filter | orderBy:view.order track by brand._id" ng-click=shopBrand(brand) ng-controller=BrandCtrl>
+            <h2 ng-if=brand.featured.text class=left>{{brand.featured[Me.gender].text}}</h2><mlz-img src={{brand.featured[user.gender].image}}></mlz-img>
+          </ion-slide>
+        </ion-slide-box>
+        <div class=pager><span ng-repeat="brand in brands.records | filter:filter" ng-class="{'active': $index === view.currentSlideIndex}"></span></div>
+      </ion-pane>
+    </div>
+
+    <ion-list delegate-handle=brands-list show-delete=view.editingBrands>
+      <!-- The users selected brands -->
+      <ion-item class="item item-brand item-full-width" collection-repeat="brand in brands.records | orderBy:['statusOrder','name'] | filter:view.search track by brand._id" collection-item-width="'100%'" collection-item-height=53 ng-click=shopBrand(brand) ng-show="brands.records.length > 0" ng-class="{'item-disabled':brand.status === 'hidden'}" ng-controller=BrandCtrl>
+        <button class="button button-clear" ng-click=toggleBrand(brand) ion-stop-event=click>
+          <i class=icon ng-class="{'icon-favourite': brand.status !== 'favourite' && brand.status !== 'hidden', 'icon-favourite-active': brand.status === 'favourite', 'icon-eye-hidden': brand.status === 'hidden'}"></i>
+        </button>
+        <mlz-img src={{brand.logo}}></mlz-img>
+        <button class="button button-clear" ng-click=viewBrandInfo(brand) ion-stop-event=click>
+          <i class="icon icon-information"></i>
+        </button>
+
+        <!-- Swipe buttons -->
+        <ion-option-button ng-class="{'button-calm': brand.status === 'hidden', 'button-assertive': brand.status !== 'hidden'}" ng-click=toggleHiddenBrand(brand)>{{brand.status === 'hidden' ? 'Show' : 'Hide'}}</ion-option-button>
+
+        <!-- Edit buttons -->
+        <ion-delete-button class="icon icon-eye-hidden" ion-stop-event=click ng-click=toggleHiddenBrand(brand)></ion-delete-button>
+      </ion-item>
+    </ion-list>
+
+    <!-- Empty screen card -->
+    <div class="padding empty center" ng-hide="brands.records.length > 0">
+      <h1>No brands found</h1>
+      <img class=perc70 src=res/images/empty-saved.png>
+    </div>
+  </ion-content>
+</ion-view>

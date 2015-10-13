@@ -1,0 +1,25 @@
+<ion-view class="bg padding walkthrough" hide-nav-bar=true>
+
+    <h1>Welcome back</h1>
+
+    <form name=login class=list ng-enter=authenticate(user)>
+        <label class="item item-input">
+            <input type=email ng-keypress="{'enter':'authenticate()'}" ng-model=user.email placeholder=Email required>
+        </label>
+        <label class="item item-input">
+            <input type=password ui-keypress="{'enter':'authenticate()'}" ng-model=user.password placeholder=Password required>
+        </label>
+    </form>
+
+    <button class="button button-block button-balanced" ng-click=authenticate(user) ng-disabled=login.$invalid>Log in</button>
+
+    <a class="button button-block button-clear button-balanced text-center" ui-sref=forgotten>Forgotten your password?</a>
+
+    <h6 class=balanced> OR </h6>
+
+    <facebook-connect user=user text="Connect with Facebook"></facebook-connect>
+
+    <div class="bar bar-footer bar-light">
+        <a class="button button-clear white" ui-sref=register>Don't have an account yet? <b>Sign up</b></a>
+    </div>
+</ion-view>

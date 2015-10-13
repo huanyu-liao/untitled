@@ -1,0 +1,20 @@
+<div class=modal ng-controller=ProductCtrl>
+  <ion-header-bar class=bar-dark>
+      <div class=buttons>
+          <button class="button button-clear button-light" ng-click=ProductModalService.hide()><i class="icon icon-cross"></i></button>
+      </div>
+      <h1 class=title>Details</h1>
+      <div class=buttons>
+        <button class="button button-clear button-light" ng-click=share(product)><i class="icon ion-ios7-upload-outline"></i></button>
+      </div>
+  </ion-header-bar>
+
+  <ng-include src="'views/products/information.html'"></ng-include>
+
+  <ion-footer-bar class="bar-light no-margin">
+    <div class="title buttons row">
+      <button class="button button-clear col button-assertive" ng-click="hide(product, context, true)">Hide <i class="icon icon-thumb-down assertive"></i></button>
+      <button class="button button-clear col button-balanced" ng-click="save(product, context, true)"><i class="icon icon-thumb-up balanced"></i> Save</button>
+    </div>
+  </ion-footer-bar>
+</div>

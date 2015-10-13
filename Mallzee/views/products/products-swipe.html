@@ -1,0 +1,8 @@
+<!-- Product listings -->
+<ion-pane>
+    <mlz-help title={{view.helpTitle}} message={{view.helpMessage}} on-close=closeHelp() hide=view.settings.hide_help_sw ng-hide=view.settings.hide_help_sw></mlz-help>
+    <div class="pane slide-up">
+        <mlz-product ng-repeat="product in products.records | limitTo:1" product=product swipe-right="save(product, context)" swipe-left="hide(product, context)">
+        </mlz-product>
+    </div>
+</ion-pane>

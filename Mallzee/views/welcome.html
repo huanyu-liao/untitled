@@ -1,0 +1,61 @@
+<ion-view class="bg walkthrough welcome" ng-class="{'final-slide': currentSlide === 6}" hide-nav-bar=true>
+
+	<ion-slide-box on-slide-changed=slideHasChanged($index)>
+		<!-- Welcome slide -->
+		<ion-slide ng-class="{'final-slide': $index === 0}">
+			<h1 class="title padding" style="margin-bottom: 150px">Welcome to Mallzee</h1>
+			<img class=logo src=res/images/logo.png>
+			<p class=title>Shop. Share. Wear</p>
+			<p class=swipe>Swipe left to find out more <i class="icon icon-back"></i></p>
+		</ion-slide>
+
+		<!-- Brands slide -->
+		<ion-slide>
+			<div class=iso-header></div>
+			<h2>All your favourite brands in one place</h2>
+			<img class=iso-image src=res/images/welcome-brands.png>
+		</ion-slide>
+
+		<!-- Swipe slide -->
+		<ion-slide>
+			<div class=iso-header></div>
+			<h2>Swipe your way to the perfect outfit</h2>
+			<img class=iso-image src=res/images/welcome-swipe.png>
+		</ion-slide>
+
+		<!-- Stylefeeds slide -->
+		<ion-slide>
+			<div class=iso-header></div>
+			<h2>Curate a wardrobe for every occasion with<br>style feeds</h2>
+			<img class=iso-image src=res/images/welcome-stylefeeds.png>
+		</ion-slide>
+
+		<!-- Inspiration slide -->
+		<ion-slide>
+			<div class=iso-header></div>
+			<h2>Get the latest from leading bloggers and stylists</h2>
+			<img class=iso-image src=res/images/welcome-inspiration.png>
+		</ion-slide>
+
+		<!-- Saved items slide -->
+		<ion-slide>
+			<div class=iso-header></div>
+			<h2>Save the perfect outfit.<br>Get notified when the price drops</h2>
+			<img class=iso-image src=res/images/welcome-pricedrop.png>
+		</ion-slide>
+
+		<ion-slide>
+			<ng-include src="'views/register.html'" ng-controller=RegisterCtrl></ng-include>
+		</ion-slide>
+
+	</ion-slide-box>
+
+	<div class="bar bar-footer sign-up">
+		<div class=row>
+			<button class="button button-clear button-light col white" ui-sref=register>Sign up</button>
+			<p class=divider>|</p>
+			<button class="button button-clear button-light col white" ui-sref=login>Log in</button>
+		</div>
+	</div>
+
+</ion-view>

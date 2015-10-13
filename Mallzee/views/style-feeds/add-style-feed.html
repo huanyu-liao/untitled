@@ -1,0 +1,30 @@
+<div class="modal stylefeed" ng-controller=StyleFeedCtrl>
+  <ion-header-bar class=bar-dark>
+    <div class=buttons>
+      <button class="button button-clear button-light" ng-click=cancelStyleFeed()>Close</button>
+    </div>
+    <div class=title ng-bind=title></div>
+    <div class=buttons>
+      <button class="button button-clear button-light" ng-show=canSaveStyleFeed(stylefeed) ng-click=saveStyleFeed(stylefeed)>Save</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content scroll=false class=has-header>
+    <ion-pane>
+      <ion-slide-box delegate-handle=stylefeed on-slide-changed=calculateStyleFeed($index) disable-scroll=true class=header-pager>
+        <ion-slide ng-include="'views/style-feeds/add-name.html'"></ion-slide>
+        <ion-slide ng-include="'views/style-feeds/add-types.html'"></ion-slide>
+        <ion-slide ng-include="'views/style-feeds/add-colours.html'"></ion-slide>
+        <ion-slide ng-include="'views/style-feeds/add-brands.html'"></ion-slide>
+        <ion-slide ng-include="'views/style-feeds/add-price.html'"></ion-slide>
+        <ion-slide-pager></ion-slide-pager>
+      </ion-slide-box>
+    </ion-pane>
+    <div class="bar bar-footer button-block button-balanced button-outline">
+      <button class="button button-clear" ng-click=prev() ng-show=view.showPrev>Prev</button>
+      <div ng-show=view.loading class=title>Searching...</div>
+      <div ng-hide=view.loading class=title>{{view.count}} Products found</div>
+      <button class="button button-clear" ng-click=next() ng-show=view.showNext>Next</button>
+    </div>
+  </ion-content>
+</div>

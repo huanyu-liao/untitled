@@ -1,0 +1,9 @@
+<div class=modal ng-controller=BrandCtrl>
+    <ion-header-bar class=bar-dark>
+        <div class=buttons>
+            <button class="button button-clear button-light" ng-click=BrandModalService.hide()><i class="icon icon-cross"></i></button>
+        </div>
+        <h1 class=title>{{brand.name}}</h1>
+    </ion-header-bar>
+    <ng-include src="'views/brands/brand.html'"></ng-include>
+</div>

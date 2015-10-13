@@ -1,0 +1,28 @@
+<ion-view view-title="My Settings">
+    <ion-content class=bg-image>
+        <div class="list no-bottom-margin">
+            <!-- Profile section -->
+            <a class="item item-icon-right" ui-sref=tab.account-profile>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+
+                <h2>{{user.name.first}} {{user.name.last}}</h2>
+                <p>{{user.gender | capitalise }}</p>
+            </a>
+            <!-- Notification -->
+            <a class="item item-icon-right" href=#/account/notifications>Notifications <i class="icon ion-chevron-right icon-accessory"></i></a>
+            <!-- Settings -->
+            <div class="item item-divider">Information</div>
+            <a class=item ng-click=inviteFriend()>Invite a Friend</a>
+            <a class=item ng-click="openLink('itms-apps://itunes.apple.com/app/id681106862')">Review Mallzee</a>
+            <a class=item ng-click="openLink('http://mallzee.com/privacy-policy')">Privacy Policy</a>
+            <a class=item ng-click="openLink('http://mallzee.com/terms-and-conditions')">Terms &amp; Conditions</a>
+            <a class=item ng-click=giveFeedback()>Give Us Feedback</a>
+            <!-- Account options -->
+            <div class="item item-divider">Account</div>
+            <a class="item item-icon-right" ng-click=logout()>Sign Out<i class="icon ion-chevron-right icon-accessory"></i></a>
+        </div>
+
+        <current-version></current-version>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,55 @@
+<ion-view view-title={{view.title}}>
+
+    <ion-nav-buttons side=secondary>
+        <button class="button button-clear button-light view-switch" ng-click="view.multiView = !view.multiView" ng-show="!(view.disableFilters || products.records === undefined)">
+            <i class=icon ng-class="{'icon-thumb-up': view.multiView, 'icon-multi-view': !view.multiView}"></i>
+        </button>
+        <button class="button button-clear button-light" ng-class="{'enabled': view.filtersSelected}" ng-click=modal.showFilter(products) ng-show="!(view.disableFilters || products.records === undefined)">
+            <i class="icon icon-filter"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content scroll=false class="bg-image products">
+    	<ion-pane ng-switch="" on=view.multiView class=products-pane ng-class="{'loading-pane':products.loading}">
+    		<!-- Products multi view -->
+	    	<ion-scroll mlz-scroll-window="" ng-switch-when=true scrollbar-x=false scrollbar-y=false on-scroll=checkScroll() class="products-multi switch-fade" delegate-handle=multiview>
+
+            	<ng-include src="'views/products/products-multi.html'"></ng-include>
+
+                <!-- TODO: Hack until ion-infinite-scroll directive works correctly with collection-repeat -->
+                <div class=loading ng-if=products.has_more></div>
+		    </ion-scroll>
+
+            <!-- TODO: Hack until ion-infinite-scroll directive works correctly with collection-repeat -->
+            <div class=loading-spinner ng-show="products.loading && products.has_more"><i class="icon ion-loading-c"></i></div>
+
+		    <!-- Products swipe view -->
+		    <div ng-switch-when=false class="products-swipe switch-fade">
+		    	<ng-include src="'views/products/products-swipe.html'"></ng-include>
+		    </div>
+	    </ion-pane>
+
+        <!-- Loading card when we fetch the products -->
+        <div class="empty padding center" ng-if="products.loading && (products.records === undefined || products.records.length === 0)">
+            <h1>Hunting out products from {{context.name}} just for you</h1>
+            <img class=perc70 src=res/images/empty-saved.png>
+            <!-- TODO: Hack until ion-infinite-scroll directive works correctly with collection-repeat -->
+            <div class=loading-spinner ng-show=products.loading><i class="icon ion-loading-c"></i></div>
+        </div>
+
+        <!-- Empty card when we fetch the products and the user has swiped through them all -->
+        <div class="empty padding center" ng-if="!products.loading && !products.empty && products.records.length === 0">
+            <h1>No products left to show</h1>
+            <img class=perc30 src=res/images/empty-products.png>
+            <button class="item button button-block button-balanced button-outline" ng-click=modal.showFilter(products) ng-show=view.filtersSelected>Try another filter</button>
+        </div>
+
+        <!-- Empty card when we fetch the products and there are none to show -->
+        <div class="empty padding center" ng-if="!products.loading && products.empty">
+            <h1>No products could be found</h1>
+            <img class=perc30 src=res/images/empty-products.png>
+            <button class="item button button-block button-balanced button-outline" ng-click=modal.showFilter(products) ng-show=view.filtersSelected>Try another filter</button>
+        </div>
+
+    </ion-content>
+</ion-view>

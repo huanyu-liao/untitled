@@ -1,0 +1,8 @@
+<div class="bar bar-header bar-clear"></div>
+
+<ion-content class="progress footer filters colours padding" ng-class="{'filter-active': hasSelected(filters.filter.colour)}">
+	<div class="button button-clear colour {{colour.key}}" ng-repeat="colour in filters.filter.colour" ng-class="{'selected': colour.selected}" ng-click="toggleFilter(filters.filter, 'colour', colour)">
+		<span ng-bind=colour.key></span>
+		<span class="tick ion-checkmark" ng-show=colour.selected></span>
+	</div>
+</ion-content>

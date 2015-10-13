@@ -1,0 +1,22 @@
+<ion-view view-title=Friends>
+    <ion-nav-buttons side=primary>
+        <button class="button button-clear button-light" ng-click=inviteFriends()>
+            Invite
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="has-header has-tabs">
+        <ion-list>
+            <!-- Friends search bar -->
+            <mlz-search placeholder="Who are you looking for?" model=search.name.first></mlz-search>
+
+            <!-- Friends repeater -->
+            <div class="item item-avatar" ng-repeat="friend in friends | filter:search | orderBy:'name.full' track by friend._id">
+                <img ng-if=friend.fb_id ng-src="https://graph.facebook.com/{{friend.fb_id}}/picture?width=200&height=200">
+                <img ng-if=!friend.fb_id ng-src=res/images/anonymous.png class=profile-pic>
+
+                <h2>{{friend.name.first}} {{friend.name.last}}</h2>
+                <p>{{friend.gender | capitalise }}</p>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

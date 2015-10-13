@@ -1,0 +1,49 @@
+<ion-view view-title="Saved Items">
+  <ion-nav-buttons side=primary>
+    <button class="button button-clear button-light" ng-click=openPopover($event)><i class="icon ion-more"></i></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side=secondary>
+    <button class="button button-clear button-light" ng-click=toggleEditUserProducts() ng-if="userproducts.records && userproducts.records.length > 0" ng-bind=view.editTitle>
+    </button>
+  </ion-nav-buttons>
+  <ion-content delegate-handle=saved-items on-scroll-interval=100 class=bg-image>
+    <!-- List of the users saved products -->
+    <ion-list delegate-handle=saved-items-list show-delete=view.editingUserProducts ng-show="userproducts.records.length > 0">
+      <!-- Saved products -->
+      <ion-item class="item-thumbnail-left item-product item-full-width" collection-repeat="product in filteredproducts = (userproducts.records | orderBy:[view.order, 'updated_at'] | filter:view.filter:exact)" collection-item-width="'100%'" collection-item-height=101 ng-click=viewUserProduct(product)>
+        <div class=item-image><mlz-img class=small-image src={{product.merchants[0].stock[0].images[0]}}></mlz-img></div>
+        <div class=item-price>
+          <span ng-class="{'on-sale': product.isOnSale}"> {{product.cost}} <span ng-show=product.isOnSale class=sale>{{product.originalCost}}</span></span>
+          <div class=item-timestamp ng-show=product.updated_at>Updated <span am-time-ago=product.updated_at></span></div>
+        </div>
+        <h2>{{product.name}}</h2>
+        <p>{{product.context.name}}</p>
+
+        <div class=price-drop ng-if=product.price_drop>Price Drop</div>
+
+        <!-- Swipe buttons -->
+        <ion-option-button class=button-calm ng-click=share(product)>Share</ion-option-button>
+        <ion-option-button class=button-assertive ng-click=deleteUserProduct(product)>Delete</ion-option-button>
+
+        <!-- Edit buttons -->
+        <ion-delete-button class=ion-minus-circled ion-stop-event=click ng-click=deleteUserProduct(product)></ion-delete-button>
+      </ion-item>
+      <!-- TODO: Hack until ion-infinite-scroll directive works correctly with collection-repeat -->
+      <!--div class="loading-spinner" ng-show="view.loading && userproducts.has_more"><i class="icon" ng-class="{'ion-loading-c': userproducts.has_more, 'ion-heart': !userproducts.has_more}"></i></div-->
+    </ion-list>
+
+    <!-- Loading screen -->
+    <div class="empty padding center" ng-if="view.loading && (userproducts.records.length === 0 || filteredproducts.length > 0)">
+      <h1>Fetching your saved items</h1>
+      <img class=perc70 src=res/images/empty-saved.png>
+    </div>
+
+    <!-- Empty screen card -->
+    <div class="empty padding center" ng-if="userproducts.records.length === 0 && !view.loading">
+      <h1>This is where your saved items live</h1>
+      <img class=perc70 src=res/images/empty-saved.png>
+      <button class="item button button-block button-balanced button-outline" ui-sref=tab.inspiration>Get shopping</button>
+    </div>
+
+  </ion-content>
+</ion-view>

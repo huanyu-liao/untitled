@@ -1,0 +1,16 @@
+<ion-view class="bg padding walkthrough" hide-nav-bar=true>
+
+    <h1>Forgotten Password?</h1>
+
+    <form name=forgotten class=list>
+        <label class="item item-input">
+            <input type=email ng-keypress="{'enter':'authenticate()'}" ng-model=user.email placeholder=Email required>
+        </label>
+    </form>
+
+    <button class="button button-block button-balanced" ng-click=forgottenPassword(user) ng-disabled=login.$invalid>Get new password</button>
+
+    <div class="bar bar-footer bar-light">
+        <a class="button button-clear white" ui-sref=login>Remember it now? <b>Tap here to login!</b></a>
+    </div>
+</ion-view>

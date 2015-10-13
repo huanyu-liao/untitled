@@ -1,0 +1,14 @@
+<div class="bar bar-header bar-clear"></div>
+
+<div class=padding>
+  <!-- product price range picker -->
+    <h1 class=balanced>Price Range</h1>
+    <form class="row price-range">
+        <label class="col col-40 price-label">{{view.currency}} From<input class=price-input ng-model=stylefeed.filter.min_price type=number step=1></label>
+        <div class="col col-20 price-divider">-</div>
+        <label class="col col-40 price-label">{{view.currency}} To<input class=price-input ng-model=stylefeed.filter.max_price type=number step=1></label>
+    </form>
+    <div class=padding-top>
+      <button class="button button-block button-outline button-balanced" ng-click=saveStyleFeed(stylefeed)>Save Style Feed</button>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<ion-view view-title="登陆">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Username</span>
+        <input type="text" ng-model="user.username">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="user.password">
+      </label>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="submit()">
+        Sign-In
+      </button>
+      <label class="item">{{message}}</label>
+
+      <ul>
+        <li ng-repeat="x in names">
+          {{ x.Name + ', ' + x.Country }}
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+</ion-view>

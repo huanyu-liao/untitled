@@ -1,0 +1,12 @@
+<ion-popover-view>
+    <ion-content>
+      <!-- Saved item order selection -->
+      <ion-list>
+		    <ion-item class="item item-divider">Order by</ion-item>
+		    <ion-item class=item ng-repeat="option in view.filters.options track by option.value" ng-class="{'item-full-width': !option.disabled, 'item-divider':option.disabled}">
+		    	<ion-radio ng-if=!option.disabled ng-model=view.selection value={{option.value}} ng-change=update(option.value)>{{option.name}}</ion-radio>
+		    	<div ng-if=option.disabled ng-bind=option.name></div>
+		    </ion-item>
+	    </ion-list>
+    </ion-content>
+  </ion-popover-view>

@@ -1,0 +1,8 @@
+<div class="bar bar-header bar-clear"></div>
+
+<ion-content class="progress footer filters types padding" ng-class="{'filter-active': hasSelected(filters.filter.type)}">
+	<div class="button button-clear type icon-{{type.key}}-{{stylefeed.filter.gender}}" ng-repeat="type in filters.filter.type" ng-class="{'selected': type.selected}" ng-click="toggleFilter(filters.filter, 'type', type)">
+		<span ng-bind=type.key></span>
+		<span class="tick ion-checkmark" ng-show=type.selected></span>
+	</div>
+</ion-content>

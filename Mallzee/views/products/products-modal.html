@@ -1,0 +1,22 @@
+<div class=modal>
+  <ion-header-bar class=bar-dark>
+    <div class=buttons>
+        <button class="button button-clear button-light" ng-click=ProductsModalService.hide()><i class="icon icon-cross"></i></button>
+    </div>
+
+    <h1 class=title ng-bind=title></h1>
+
+    <div>
+      <button class="button button-clear button-light view-switch" ng-disabled="products.count === 0 && !products.metadata.selection" ng-click="view.multiView = !view.multiView">
+        <i class=icon ng-class="{'icon-thumb-up': view.multiView, 'icon-multi-view': !view.multiView}"></i>
+      </button>
+
+      <button class="button button-clear button-light" ng-disabled="products.count === 0 && !products.metadata.selection" ng-click=modal.showFilter(products)>
+          <i class="icon icon-filter" ng-class="{'active': products.metadata.selection}"></i>
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ng-include src="'views/products/products-list.html'"></ng-include>
+
+</div>

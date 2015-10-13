@@ -1,0 +1,91 @@
+{
+  "name": "runway",
+  "version": "2.0.5-2",
+  "private": true,
+  "dependencies": {
+    "bower": "^1.3.12"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-bump": "0.0.16",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-compress": "~0.5.2",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-contrib-connect": "~0.8.0",
+    "grunt-contrib-copy": "~0.4.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-cssmin": "~0.5.0",
+    "grunt-contrib-htmlmin": "~0.1.1",
+    "grunt-contrib-imagemin": "~0.1.2",
+    "grunt-contrib-livereload": "~0.1.2",
+    "grunt-contrib-sass": "^0.7.3",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-html2js": "~0.2.3",
+    "grunt-karma": "~0.3.0",
+    "grunt-newer": "^0.7.0",
+    "grunt-ng-annotate": "^0.4.0",
+    "grunt-ng-constant": "^0.5.0",
+    "grunt-open": "~0.2.0",
+    "grunt-phonegap-build": "~0.0.6",
+    "grunt-protractor-runner": "^1.0.0",
+    "grunt-regarde": "~0.1.1",
+    "grunt-release": "^0.7.0",
+    "grunt-rev": "~0.1.0",
+    "grunt-s3": "~0.2.0-alpha.3",
+    "grunt-usemin": "~0.1.10",
+    "load-grunt-config": "^0.13.2",
+    "load-grunt-tasks": "^0.6.0",
+    "matchdep": "~0.1.1",
+    "pivotal-deliver": "^0.1.0",
+    "time-grunt": "^1.0.0"
+  },
+  "cordova": {
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "plugins": [
+      "org.apache.cordova.console",
+      "org.apache.cordova.device",
+      "org.apache.cordova.dialogs",
+      "org.apache.cordova.camera",
+      "org.apache.cordova.contacts",
+      "org.apache.cordova.geolocation",
+      "org.apache.cordova.globalization",
+      "org.apache.cordova.inappbrowser",
+      "org.apache.cordova.network-information",
+      "org.apache.cordova.splashscreen",
+      "org.apache.cordova.statusbar",
+      "org.apache.cordova.vibration",
+      "com.phonegap.plugins.pushplugin",
+      "com.ionic.keyboard",
+      "https://github.com/adjust/cordova_sdk.git",
+      "https://github.com/mallzee/LaunchMyApp-PhoneGap-Plugin.git",
+      "https://github.com/mallzee/SocialSharing-PhoneGap-Plugin.git#whatsapp-native-share",
+      "https://github.com/mallzee/network-activity.git",
+      "https://github.com/mallzee/cordova-progressIndicator.git",
+      {
+        "plugin": "https://github.com/mallzee/phonegap-localytics-plugin.git#master",
+        "variables": {
+          "APP_ID": "dbc6bc4482022b8f5ba2ede-4333948c-3910-11e4-a16c-005cf8cbabd8"
+        }
+      },
+      "https://github.com/mallzee/cordova-collection-repeat-image-plugin.git#master",
+      "https://github.com/lookback/cordova-lookback.git",
+      "https://github.com/peutetre/cordova-plugin-hockeyapp.git",
+      {
+        "plugin": "https://github.com/Wizcorp/phonegap-facebook-plugin.git",
+        "variables": {
+          "APP_ID": "312702818844146",
+          "APP_NAME": "Mallzee"
+        }
+      }
+    ]
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "postinstall": "./tasks/postinstall.sh"
+  }
+}
